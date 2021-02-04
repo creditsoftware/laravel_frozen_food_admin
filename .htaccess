@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+    RewriteEngine On
+
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    RewriteBase /etichette/
+    RewriteCond %{REQUEST_URI} ^/etichette/(.*)$
+    RewriteCond %{DOCUMENT_ROOT}/etichette/public/%1 -f
+    RewriteRule ^(.*)$ /etichette/public/$1 [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ index.php [L]
+
+</IfModule>

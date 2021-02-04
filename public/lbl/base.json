@@ -1,0 +1,94 @@
+[
+    {
+        "h": 457,
+        "w": 798,
+        "x": 41,
+        "y": 422,
+        "id": "name",
+        "size": 1099,
+        "lineh": 100,
+        "nrows": 1,
+        "title": "Nome"
+    },
+    {
+        "h": 722,
+        "w": 901,
+        "x": 42,
+        "y": 483,
+        "id": "description",
+        "size": 418,
+        "lineh": 133,
+        "nrows": 12,
+        "title": "Descrizione"
+    },
+    {
+        "h": 759,
+        "w": 900,
+        "x": 698,
+        "y": 745,
+        "id": "energy",
+        "size": 471,
+        "lineh": 100,
+        "title": "Energia"
+    },
+    {
+        "h": 788,
+        "w": 900,
+        "x": 698,
+        "y": 772,
+        "id": "fat",
+        "size": 472,
+        "lineh": 100,
+        "title": "Grassi"
+    },
+    {
+        "h": 815,
+        "w": 900,
+        "x": 698,
+        "y": 798,
+        "id": "acidfat",
+        "size": 472,
+        "lineh": 100,
+        "title": "di cui acidi grassi saturi"
+    },
+    {
+        "h": 852,
+        "w": 900,
+        "x": 698,
+        "y": 837,
+        "id": "carbo",
+        "size": 472,
+        "lineh": 100,
+        "title": "Carboidrati"
+    },
+    {
+        "h": 880,
+        "w": 900,
+        "x": 698,
+        "y": 862,
+        "id": "sugar",
+        "size": 472,
+        "lineh": 100,
+        "title": "di cui zuccheri"
+    },
+    {
+        "h": 903,
+        "w": 900,
+        "x": 698,
+        "y": 889,
+        "id": "protein",
+        "size": 472,
+        "lineh": 100,
+        "title": "Proteine"
+    },
+    {
+        "h": 933,
+        "w": 900,
+        "x": 698,
+        "y": 915,
+        "id": "salt",
+        "size": 472,
+        "lineh": 100,
+        "title": "Sale"
+    }
+]
