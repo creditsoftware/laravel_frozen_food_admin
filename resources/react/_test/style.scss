@@ -1,0 +1,14 @@
+
+#app-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.dropzone {
+    width: 200px;
+    height: 200px;
+    border: 1px solid red;
+
+}

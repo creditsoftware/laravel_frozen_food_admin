@@ -1,0 +1,106 @@
+#main-list {
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+
+    #toolbar > div {
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+
+        input {
+            width: 50%;
+            font-size: 15pt;
+            padding: 6px;
+            border: 1px solid #142C87;
+            margin-left: auto;
+        }
+
+        select {
+            font-size: 15pt;
+            padding: 6px;
+            height: 42px;
+            width: 150px;
+            background-color: #EEEEEE;
+            border: 0;
+            color: #142C87;
+            -moz-appearance: none;
+            position: relative;
+        }
+
+        .btn-icon {
+            margin-left: auto;
+        }
+    }
+
+
+    #products {
+        overflow-y: scroll;
+        width: 100%;
+
+        display: grid;
+        grid-template-columns: auto 2fr 1fr 3fr auto 150px;
+
+        .header {
+            display: contents;
+
+            & > div {
+                background-color: white;
+                position: sticky;
+                top: 0;
+                font-size: 20pt;
+                padding: 10px 15px;
+                margin: 0;
+                z-index: 9999;
+
+                &:nth-child(3), &:nth-child(4) {
+                    justify-content: center;
+                }
+            }
+        }
+
+        .product, .label {
+            display: contents;
+
+            & > div {
+                margin: 4px 0;
+                padding: 6px 6px;
+                font-size: 11pt;
+                font-weight: 400;
+
+                &:nth-child(2), &:nth-child(3), &:nth-child(4) {
+                    display: block;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    max-width: 100%;
+                }
+
+            }
+        }
+
+        .product {
+            & > div {
+                background-color: #EEEEEE;
+            }
+
+            &:hover > div {
+                background-color: #CCCCCC;
+                cursor: pointer;
+            }
+        }
+
+        & > div > div:first-child {
+            padding-left: 20px;
+        }
+
+        & > div > div:last-child {
+            justify-content: center;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+

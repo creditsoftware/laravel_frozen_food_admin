@@ -1,0 +1,55 @@
+$color-main: #142C87;
+
+
+body, h1, h2, h3, h4, h5, p, button, th {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 100;
+    color: $color-main;
+}
+
+h1, h2, h3, h4, h5 {
+    margin: 0;
+}
+
+input, textarea {
+    color: $color-main;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 100;
+    &::placeholder {
+        color: #B7B7B7;
+    }
+    padding: 7px;
+    resize: none;
+}
+
+button {
+    padding: 7px;
+    background-color: $color-main;
+    color: white;
+    border: 0;
+    cursor: pointer;
+    &:hover {
+        background-color: #3d53a6;
+    }
+}
+
+div {
+    display: flex;
+    color: $color-main;
+}
+
+#toolbar {
+    height: 80px;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin: 5px 0;
+    flex-shrink: 0;
+
+    > .logo {
+        height: 60px;
+        margin: 0 30px;
+    }
+}

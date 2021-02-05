@@ -1,0 +1,60 @@
+
+
+#spabox {
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+
+    #logo {
+        flex-basis: 20%;
+        align-items: flex-end;
+    }
+
+    #title {
+        align-items: center;
+        text-transform: uppercase;
+        letter-spacing: 5pt;
+        flex-basis: 24%;
+    }
+
+    #loginbox {
+
+        background-color: #EEEEEE;
+        padding: 20px;
+        width: 400px;
+        height: 250px;
+        flex-direction: column;
+        justify-content: space-around;
+
+        h2 {
+            text-transform: uppercase;
+        }
+
+        input {
+            border: 0;
+            font-size: 11pt;
+        }
+
+        button {
+            margin-top: 20px;
+
+            width: 33%;
+            align-self: flex-end;
+            font-size: 14pt;
+        }
+
+    }
+
+    #error {
+        color: red;
+    }
+}
+
+#version {
+    position: fixed;
+    bottom:0;
+    right: 0;
+    color: #AAAAAA;
+
+}

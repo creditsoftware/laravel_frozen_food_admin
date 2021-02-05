@@ -45,7 +45,6 @@ class ApiController extends Controller
     public function newProd() {
         $code = request()->get('code');
         $name = request()->get('name');
-
         if(!$code)  return response(['err' => 'missing code'], 400);
         if(!$name)  return response(['err' => 'missing name'], 400);
 
