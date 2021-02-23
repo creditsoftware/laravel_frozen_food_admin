@@ -34,6 +34,7 @@ export default ({id}) => {
         label |> labels.save |> dispatch;
         nav.home() |> dispatch;
     }
+    console.log(label)
     return <div id='main-edit'>
         <Toolbar>
             <div>

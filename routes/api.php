@@ -15,4 +15,5 @@ Route::middleware(['apiauth', 'json'])->group(function() {
     Route::get('product', 'ApiController@getProd');
     Route::post('product', 'ApiController@newProd');
     Route::get('products/updated_at', 'ApiController@prodUpdates');
+    Route::get('test', 'ApiController@test');
 });
