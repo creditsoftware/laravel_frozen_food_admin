@@ -18,6 +18,15 @@ class CreateProductsTable extends Migration
                 $table->char('code');
                 $table->char('name');
                 $table->bigInteger('activelabel')->nullable();
+                $table->string('number')->nullable();
+                $table->string('expiration')->nullable();
+                $table->string('packed')->nullable();
+                $table->string('fao')->nullable();
+                $table->string('origin')->nullable();
+                $table->string('method')->nullable();
+                $table->string('latin')->nullable();
+                $table->string('sizing')->nullable();
+                $table->string('price')->nullable();
                 $table->timestamps();
         });
 

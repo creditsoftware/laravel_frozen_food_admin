@@ -70,15 +70,15 @@ class ApiController extends Controller
         if(!$code)  return response(['err' => 'missing code'], 400);
         if(!$name)  return response(['err' => 'missing name'], 400);
 
-        if(!$number)  return response(['err' => 'missing number'], 400);
+        // if(!$number)  return response(['err' => 'missing number'], 400);
         // if(!$expiration)  return response(['err' => 'missing expiration'], 400);
         // if(!$packed)  return response(['err' => 'missing packed'], 400);
-        if(!$fao)  return response(['err' => 'missing fao'], 400);
-        if(!$origin)  return response(['err' => 'missing origin'], 400);
-        if(!$method)  return response(['err' => 'missing method'], 400);
-        if(!$latin)  return response(['err' => 'missing latin'], 400);
-        if(!$sizing)  return response(['err' => 'missing sizing'], 400);
-        if(!$price)  return response(['err' => 'missing price'], 400);
+        // if(!$fao)  return response(['err' => 'missing fao'], 400);
+        // if(!$origin)  return response(['err' => 'missing origin'], 400);
+        // if(!$method)  return response(['err' => 'missing method'], 400);
+        // if(!$latin)  return response(['err' => 'missing latin'], 400);
+        // if(!$sizing)  return response(['err' => 'missing sizing'], 400);
+        // if(!$price)  return response(['err' => 'missing price'], 400);
 
         $p = Product::whereCode($code)->first();
         if($p) {
