@@ -7,8 +7,8 @@ const PRODUCT_UPD = 'PRODUCT_UPD';
 const PRODUCT_DEL = 'PRODUCT_DEL';
 const PRODUCT_UPDCOD = 'PRODUCT_UPDCOD';
 
-
 exports.updProd = (id, values) => ({type: PRODUCT_UPD, id, values});
+
 
 exports.handlers = {
     [PRODUCT_UPD]: (s, {id, values}) => s.map(p => p.id === id ? {...p, ...values, id} : p ),

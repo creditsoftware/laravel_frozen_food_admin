@@ -7,6 +7,8 @@ import Toolbar from '../UI/Toolbar';
 import Settings from "./Settings";
 import Canvas from "./Canvas";
 
+import product from '../store/products'
+
 import nav from '../store/nav';
 import labels from '../store/labels';
 
@@ -17,24 +19,25 @@ export default ({id}) => {
     const dispatch = useDispatch();
     const [dirty, setDirty] = useState(false);
     const [label, setLabel] = useState(id |> labels.getById |> useSelector);
+
     const labelData = useSelector(({labels})=>labels)
     useEffect(()=>{
         if(labelData.length>0){
             const filterLabel=labelData.filter(ele=>ele.id===id)
             setLabel({...filterLabel[0]})
-        }
+        } 
     },[labelData])
     const updLabel = data => {setLabel(p => ({...p, ...data, id})) & setDirty(true)};
 
     function exit() {
         if(dirty && !confirm("Uscire senza salvare?")) return;
+        
         nav.home() |> dispatch;
     }
     function save() {
         label |> labels.save |> dispatch;
         nav.home() |> dispatch;
     }
-    console.log(label)
     return <div id='main-edit'>
         <Toolbar>
             <div>
@@ -49,7 +52,7 @@ export default ({id}) => {
 
         <div id='editor'>
             <Settings label={label} update={updLabel}/>
-            <Canvas label={label} />
+            <Canvas label={label}/>
         </div>
     </div>;
 

@@ -13,17 +13,17 @@ const Test = (() => {
         e.persist();
         e.preventDefault();
         const d = e.dataTransfer;
-        console.log('ondrop 1', ...d.files)
-        console.log('ondrop 2', ...d.items)
-        console.log('ondrop 3', d.types);
+        // console.log('ondrop 1', ...d.files)
+        // console.log('ondrop 2', ...d.items)
+        // console.log('ondrop 3', d.types);
 
         if(d.items.length > 1) return console.error('too many files');
 
         const i = d.items[0];
-        console.log(i.kind, i.type);
+        // console.log(i.kind, i.type);
         const f = i.getAsFile();
         const a = await f.arrayBuffer();
-        console.log(f.size);
+        // console.log(f.size);
 
     }
 
@@ -32,9 +32,9 @@ const Test = (() => {
         e.preventDefault();
         e.persist();
         const d = e.dataTransfer;
-        console.log('ondragenter', d.files, d.items, d.types);
+        // console.log('ondragenter', d.files, d.items, d.types);
         if(d.items.length) {
-            console.log(d.items[0]);
+            // console.log(d.items[0]);
         }
     }
 
@@ -42,7 +42,7 @@ const Test = (() => {
         e.preventDefault();
         e.persist();
         const d = e.dataTransfer;
-        console.log('ondragleave', d.files, d.items, d.types);
+        // console.log('ondragleave', d.files, d.items, d.types);
     }
 
     const onDragOver = e => {

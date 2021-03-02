@@ -4,7 +4,8 @@ const api = async (endpoint, payload) => {
         method: payload ? 'POST' : 'GET',
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': '5R3412K7ZKX1GFCXHQV7'
         },
         body: payload ? JSON.stringify(payload) : undefined,
     });
@@ -35,6 +36,7 @@ const ajax_save = (endpoint, payload) => {
 
 export const login = (name, password) => api('login', {name, password});
 export const dupe = id => ajax(`dupe/${id}`);
+export const getProd = code => api(`api/product?code=${code}`);
 export const delLabel = id => ajax(`delLabel/${id}`);
 export const delProduct = id => ajax(`delProduct/${id}`);
 export const active = id => ajax(`active/${id}`);

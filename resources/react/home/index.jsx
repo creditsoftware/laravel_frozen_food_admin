@@ -5,8 +5,10 @@ import { useSelector } from 'react-redux';
 import nav from './store/nav';
 import list from './store/list';
 import products from './store/products';
+import product from './store/product';
 import labels from './store/labels';
 import formats from './store/formats';
+import detail from './store/detail';
 
 
 import List from './List';
@@ -17,5 +19,5 @@ import Edit from './Edit';
 export default (() => {
     const edit = useSelector(nav.getEditId);
     return edit ? <Edit id={edit}/> : <List/>;
-}) |> hot |> boot(#, {nav, list, products, labels, formats});
+}) |> hot |> boot(#, {nav, list, products, labels, formats, detail});
 

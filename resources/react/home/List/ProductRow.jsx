@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import nav from '../store/nav';
+import product from '../store/product';
 import list from '../store/list';
 import labels from '../store/labels';
 import products from '../store/products';
+import productDetail from '../store/detail';
 import IconPop from '../UI/IconPop';
 
 
@@ -52,7 +54,7 @@ export default ({id, code, name, activelabel, updated_at}) => {
                     <div>{l.notes}</div>
                     <div>{l.updated_at}</div>
                     <div>
-                        <IconPop icon="edit" text="Modifica" onClick={() => l.id |> nav.edit |> dispatch}/>
+                        <IconPop icon="edit" text="Modifica" onClick={() => { l.id |> nav.edit |> dispatch; code |> productDetail.getprod |> dispatch }}/>
                         <IconPop icon="dupe" text="Duplica" onClick={() => l.id |> labels.dupe |> dispatch}/>
                         {
                             l.id === activelabel && <>
