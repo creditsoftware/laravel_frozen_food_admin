@@ -19,19 +19,17 @@ export default ({id}) => {
     const dispatch = useDispatch();
     const [dirty, setDirty] = useState(false);
     const [label, setLabel] = useState(id |> labels.getById |> useSelector);
-
     const labelData = useSelector(({labels})=>labels)
     useEffect(()=>{
         if(labelData.length>0){
             const filterLabel=labelData.filter(ele=>ele.id===id)
             setLabel({...filterLabel[0]})
-        } 
+        }
     },[labelData])
     const updLabel = data => {setLabel(p => ({...p, ...data, id})) & setDirty(true)};
 
     function exit() {
         if(dirty && !confirm("Uscire senza salvare?")) return;
-        
         nav.home() |> dispatch;
     }
     function save() {
@@ -52,7 +50,7 @@ export default ({id}) => {
 
         <div id='editor'>
             <Settings label={label} update={updLabel}/>
-            <Canvas label={label}/>
+            <Canvas label={label} />
         </div>
     </div>;
 

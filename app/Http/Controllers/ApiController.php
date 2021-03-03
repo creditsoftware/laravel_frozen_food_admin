@@ -10,7 +10,6 @@ class ApiController extends Controller
 {
     public function getProd()
     {
-      
         if(!request()->has('code'))
             return response(['err' => 'missing code']);
 
@@ -18,9 +17,7 @@ class ApiController extends Controller
 
         $p = Product::whereCode($code)->first();
         if(!$p) return response(['err' => 'product code not found'], 400);
-        
-
-        $l = Label::find($p->activelabel);    
+        $l = Label::find($p->activelabel);
         if(!$l) return response(['err' => 'activelabel not found'], 400);
 
         $p = $p->toArray();
@@ -127,7 +124,6 @@ class ApiController extends Controller
     }
 
     public function prodUpdates() {
-     
         $all = Product::all(['code', 'updated_at'])->sortByDesc('updated_at')->toArray();
         return array_column($all, 'updated_at', 'code');
     }

@@ -1,6 +1,7 @@
 import { useRef, useEffect, useLayoutEffect, useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { loadImg } from '../utils';
+
 import formats from '../store/formats';
 
 const format1 = [
@@ -26,7 +27,7 @@ const format1 = [
     },
     {
         h: 852, w: 900, x: 230, y: 810,
-        title: "method", prefix: "Metodo:", suffix: '', uisize: 0.25,
+        title: "method", prefix: "M.Pesca:", suffix: '', uisize: 0.25,
         id: "method", size: 472, lineh: 100,
     },
     {
@@ -93,8 +94,10 @@ async function canvasPaint(can, label, format, cfg, product) {
     const [Ix, Iy, Iw, Ih] = [(w - iw * s) / 2, (h - ih * s) / 2, iw * s, ih * s];4
 
     ctx.clearRect(0, 0, w, h);
+   // console.log('clear');
 
     ctx.drawImage(img, Ix, Iy, Iw, Ih);
+
 
     ctx.strokeStyle = '#FF0000';
     ctx.lineWidth = 0.5;
@@ -118,7 +121,9 @@ async function canvasPaint(can, label, format, cfg, product) {
         }
     }
     for (const { id, x, y, w, h, size, lineh, suffix } of format) {
+
         if(id === 'recipes') continue;
+
         const a = Ix + Iw * (x / 1e3);
         const b = Iy + Ih * (y / 1e3);
         const c = Ix + Iw * (w / 1e3);
@@ -131,7 +136,6 @@ async function canvasPaint(can, label, format, cfg, product) {
 
         drawText(ctx, [a, b, c - a, d - b], text, size * s, lineh, id, suffix, '');
     }
-  
     ctx.stroke();
 }
 
