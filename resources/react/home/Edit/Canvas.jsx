@@ -41,7 +41,7 @@ const format1 = [
     },
     {
         h: 903, w: 900, x: 410, y: 879,
-        title: "price", prefix: "Prezzo E/Kg:", suffix: '', uisize: 0.25,
+        title: "price", prefix: "Prezzo €/Kg:", suffix: '', uisize: 0.25,
         id: "price", size: 472, lineh: 100,
     },
     {
