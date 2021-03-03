@@ -27,6 +27,7 @@ class CreateProductsTable extends Migration
                 $table->string('latin')->nullable();
                 $table->string('sizing')->nullable();
                 $table->string('price')->nullable();
+                $table->string('glazing')->nullable();
                 $table->timestamps();
         });
 
