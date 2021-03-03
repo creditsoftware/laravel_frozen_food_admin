@@ -66,7 +66,8 @@ class ApiController extends Controller
         $latin = isset($batch['latin'])?$batch['latin']:NULL;
         $sizing = isset($batch['sizing'])?$batch['sizing']:NULL;
         $price = isset($batch['price'])?$batch['price']:NULL;
-        
+        $glazing = isset($batch['glazing'])?$batch['glazing']:NULL;
+
         if(!$code)  return response(['err' => 'missing code'], 400);
         if(!$name)  return response(['err' => 'missing name'], 400);
 
@@ -93,6 +94,7 @@ class ApiController extends Controller
             $p->latin = $latin;
             $p->sizing = $sizing;
             $p->price = $price;
+            $p->glazing = $glazing;            
             $p->save();
             return ['ok' => 'product updated'];
         }
@@ -109,6 +111,7 @@ class ApiController extends Controller
         $p->latin = $latin;
         $p->sizing = $sizing;
         $p->price = $price;
+        $p->glazing = $glazing;
         $p->save();
 
         $l = new Label();
