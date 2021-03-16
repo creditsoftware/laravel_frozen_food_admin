@@ -17,3 +17,8 @@ Route::middleware(['apiauth', 'json'])->group(function() {
     Route::get('products/updated_at', 'ApiController@prodUpdates');
     Route::get('test', 'ApiController@test');
 });
+// clear cache
+Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('cache:clear');
+    // return what you want
+});
