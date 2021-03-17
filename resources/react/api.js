@@ -1,4 +1,4 @@
-import { useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 const api = async (endpoint, payload) => {
     const res = await fetch(_URL(endpoint), {
         method: payload ? 'POST' : 'GET',
@@ -14,13 +14,13 @@ const api = async (endpoint, payload) => {
 };
 const wordpress_api = async (payload) => {
     let body_data = 'action=label_ajax_request';
-    for(let i in payload){
+    for (let i in payload) {
         body_data += `&${i}=${payload[i]}`
     }
-    const res = await fetch('https://picchionisurgelati.it//wp-admin/admin-ajax.php',{
-    // const res = await fetch('http://localhost/wordpress/wp-admin/admin-ajax.php',{
+    const res = await fetch('https://picchionisurgelati.it//wp-admin/admin-ajax.php', {
+        // const res = await fetch('http://localhost/wordpress/wp-admin/admin-ajax.php',{
         method: payload ? 'POST' : 'GET',
-        mode:'no-cors',
+        mode: 'no-cors',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
         },
@@ -35,7 +35,7 @@ const ajax_save = (endpoint, payload) => {
     // wordpress_api(payload)
 }
 
-export const login = (name, password) => api('login', {name, password});
+export const login = (name, password) => api('login', { name, password });
 export const dupe = id => ajax(`dupe/${id}`);
 export const getProd = code => api(`api/product?code=${code}`);
 export const delLabel = id => ajax(`delLabel/${id}`);
@@ -43,7 +43,7 @@ export const delProduct = id => ajax(`delProduct/${id}`);
 export const active = id => ajax(`active/${id}`);
 export const save = label => ajax_save('save', label);
 // export const send_data = label => ajax('save', label);
-export const updCod = (oldCod, newCod) => ajax('updCod', {oldCod, newCod});
+export const updCod = (oldCod, newCod) => ajax('updCod', { oldCod, newCod });
 export const wp_save = (label) => wordpress_api(label);
 export const getLabelImage = async fname => {
     const res = await fetch(_URL(`uploads/label/${fname}`));
