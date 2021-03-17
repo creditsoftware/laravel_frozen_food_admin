@@ -68,6 +68,10 @@ class HomeController extends Controller
         return['ok' => 'deleted'];
     }
 
+    public function saveProduct($code) {
+        // $p = Product::find()
+    }
+
     public function active($id) {
         $l = Label::find($id);
         if(!$l) return ['err' => 'label not found'];

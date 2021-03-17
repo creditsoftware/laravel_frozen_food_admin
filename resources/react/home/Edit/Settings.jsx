@@ -15,9 +15,10 @@ const Settings = ({label, update}) => {
     return (
         <div id='settings'>
             {format.map(f => <Input key={f.id} format={f} label={label} update={update} />)}
-
+            <Input format={{id:'price', title:"Price", uisize:1}} label={label} update={update} />
             <Input format={{id:'notes', title:'Note', uisize:3}} label={label} update={update} />
             <Input format={{id:'webdesc', title:'Descrizione Web', uisize:4}} label={label} update={update} />
+            
             <FileDrop label={label} update={update}  />
 
             {/*<button onClick={() => dispatch({type:'HACK+'})}>+</button>*/}
