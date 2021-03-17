@@ -9,9 +9,9 @@ import Canvas from "./Canvas";
 
 import product from '../store/products'
 
+import {updatePrice} from '../store/detail';
 import nav from '../store/nav';
 import labels from '../store/labels';
-
 import './edit.scss';
 
 
@@ -19,6 +19,7 @@ export default ({id}) => {
     const dispatch = useDispatch();
     const [dirty, setDirty] = useState(false);
     const [label, setLabel] = useState(id |> labels.getById |> useSelector);
+    const productData = useSelector(({detail})=>detail);
     const labelData = useSelector(({labels})=>labels)
     useEffect(()=>{
         if(labelData.length>0){
@@ -26,7 +27,15 @@ export default ({id}) => {
             setLabel({...filterLabel[0]})
         }
     },[labelData])
-    const updLabel = data => {setLabel(p => ({...p, ...data, id})) & setDirty(true)};
+    const updLabel = data => {setLabel(p => ({...p, ...data, id})) & setDirty(true);
+        if(data.price){
+            let prod = productData.getProd
+            console.log(prod,"&&@@@@@@@@@@@@@@@@proid")
+            prod.product.price = data.price
+            console.log(prod.product,"222222222222222222222222")
+            dispatch(updatePrice(prod))
+        }
+    };
 
     function exit() {
         if(dirty && !confirm("Uscire senza salvare?")) return;

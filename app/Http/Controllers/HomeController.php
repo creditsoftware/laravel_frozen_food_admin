@@ -19,6 +19,7 @@ class HomeController extends Controller
         );
     }
 
+
     public function updCod() {
         $oldCod = request()->get('oldCod');
         $newCod = request()->get('newCod');
@@ -68,10 +69,6 @@ class HomeController extends Controller
         return['ok' => 'deleted'];
     }
 
-    public function saveProduct($code) {
-        // $p = Product::find()
-    }
-
     public function active($id) {
         $l = Label::find($id);
         if(!$l) return ['err' => 'label not found'];
@@ -86,6 +83,15 @@ class HomeController extends Controller
 
     public function save() {
         $id = request()->get('id');
+        $code = request()->get('code');
+        $price = request()->get('price');
+
+        if($code && $price){
+            $p = Product::whereCode($code)->first();
+            if(!$p) return ['err' => 'product not found'];
+            $p->price = $price;
+            $p->save();
+        }
 
         $l = Label::find($id);
         if(!$l) return ['err' => 'label not found'];
