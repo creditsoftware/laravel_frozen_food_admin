@@ -12,7 +12,6 @@ const Settings = ({ label, update }) => {
     const productData = useSelector(({ detail }) => detail);
     let product = productData.getProd && productData.getProd.product
     useEffect(() => {
-        console.log(product, "((((((((((((((((((((((")
     }, [product])
     return (
         <div id='settings'>

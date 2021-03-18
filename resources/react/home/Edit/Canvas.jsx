@@ -149,12 +149,10 @@ export default ({ label }) => {
 };
 
 function Canvas({ w, h, label, product }) {
-    console.log(product, "pro222222222222222222222")
     const refCanvas = useRef(null);
 
     const format = useSelector(formats.getById(1));
     const cfg = { label: 0 }; //useSelector(s => s.cfg);
-
     useLayoutEffect(() => { canvasPaint(refCanvas.current, label, format, cfg, product) }, [label, format, cfg, w, h, product]);
     return <canvas id="canvas" ref={refCanvas} width={w} height={h} product={product} />;
 }
@@ -207,11 +205,12 @@ async function canvasPaint(can, label, format, cfg, product) {
                 if (text)
                     text = methods[text]
             } else if (id === 'price') {
+                
                 let price = product['price'].replace(',', '') * 1
                 if (product['price'].includes(',')) {
                     price = (price / 1000).toFixed(2)
                 }
-                text = price
+                text = price.toString()
             }
 
             if (id === 'packed' || id === 'expiration' || id === 'sizing') {
@@ -266,7 +265,6 @@ function drawText(ctx, [x, y, w, h], text, size, lineh, id, suffix, prefix) {
     if (prefix !== '') text = `${prefix} ${text}`;
     ctx.font = `${size}px Open Sans`;
     ctx.fillStyle = 'black';
-
     const splitted = splitText(t => ctx.measureText(t).width, text, w);
 
 

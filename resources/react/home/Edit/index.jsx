@@ -21,7 +21,6 @@ export default ({ id }) => {
     const [label, setLabel] = useState(id |> labels.getById |> useSelector);
     const productData = useSelector(({ detail }) => detail);
     const labelData = useSelector(({ labels }) => labels);
-    const [getProdData, setGetProdData] = useState([]);
     useEffect(() => {
         if (labelData.length > 0) {
             const filterLabel = labelData.filter(ele => ele.id === id)

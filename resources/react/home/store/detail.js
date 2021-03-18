@@ -14,13 +14,11 @@ exports.handlers = {
 exports.init = {}
 
 function* getProd_saga(code) {
-    console.log(code, "********************")
     const getProd = yield call(api.getProd, code.code);
     yield put({ type: PRODUCT_DETAIL, getProd })
 }
 
 function* update_saga({ getProd }) {
-    console.log(getProd, "^^^^^^^^^^^^^^^^")
     yield put({ type: PRODUCT_DETAIL, getProd })
 }
 
