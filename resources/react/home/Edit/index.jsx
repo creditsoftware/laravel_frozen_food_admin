@@ -20,7 +20,8 @@ export default ({ id }) => {
     const [dirty, setDirty] = useState(false);
     const [label, setLabel] = useState(id |> labels.getById |> useSelector);
     const productData = useSelector(({ detail }) => detail);
-    const labelData = useSelector(({ labels }) => labels)
+    const labelData = useSelector(({ labels }) => labels);
+    const [getProdData, setGetProdData] = useState([]);
     useEffect(() => {
         if (labelData.length > 0) {
             const filterLabel = labelData.filter(ele => ele.id === id)
@@ -29,11 +30,13 @@ export default ({ id }) => {
     }, [labelData])
     const updLabel = data => {
         setLabel(p => ({ ...p, ...data, id })) & setDirty(true);
-        if (data.price) {
+        if (data.price.length == 0) {
             let prod = productData.getProd
-            console.log(prod, "&&@@@@@@@@@@@@@@@@proid")
+            prod.product.price = ""
+            dispatch(updatePrice(prod))
+        } else {
+            let prod = productData.getProd
             prod.product.price = data.price
-            console.log(prod, "222222222222222222222222")
             dispatch(updatePrice(prod))
         }
     };

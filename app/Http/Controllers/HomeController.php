@@ -85,17 +85,12 @@ class HomeController extends Controller
         $id = request()->get('id');
         $code = request()->get('code');
         $price = request()->get('price');
-
-        if($code && $price){
-            $p = Product::whereCode($code)->first();
-            if(!$p) return ['err' => 'product not found'];
-            $p->price = $price;
-            $p->save();
-        }
-
+        $p = Product::whereCode($code)->first();
+        if(!$p) return ['err' => 'product not found'];
+        $p->price = $price;
+        $p->save();
         $l = Label::find($id);
         if(!$l) return ['err' => 'label not found'];
-
         $l->notes = request()->get('notes');
         $l->name = request()->get('name');
         $l->webdesc = request()->get('webdesc');

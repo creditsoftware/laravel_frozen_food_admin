@@ -149,6 +149,7 @@ export default ({ label }) => {
 };
 
 function Canvas({ w, h, label, product }) {
+    console.log(product, "pro222222222222222222222")
     const refCanvas = useRef(null);
 
     const format = useSelector(formats.getById(1));
