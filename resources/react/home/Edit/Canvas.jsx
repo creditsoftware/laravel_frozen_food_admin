@@ -205,11 +205,8 @@ async function canvasPaint(can, label, format, cfg, product) {
                 if (text)
                     text = methods[text]
             } else if (id === 'price') {
-                
-                let price = product['price'].replace(',', '') * 1
-                if (product['price'].includes(',')) {
-                    price = (price / 1000).toFixed(2)
-                }
+                let price = product['price'].replace(',', '.') * 1
+                price = price.toFixed(2)
                 text = price.toString()
             }
 

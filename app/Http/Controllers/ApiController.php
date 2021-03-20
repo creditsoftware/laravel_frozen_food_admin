@@ -53,6 +53,8 @@ class ApiController extends Controller
 
         $code = isset($prod['code'])?$prod['code']:NULL;
         $name = isset($prod['name'])?$prod['name']:NULL;
+        $um = isset($prod['um'])?$prod['um']:NULL;
+        $category = isset($prod['category'])?$prod['category']:NULL;
 
         $number = isset($batch['number'])?$batch['number']:NULL;
         $expiration = isset($batch['expiration'])?$batch['expiration']:NULL;
@@ -81,6 +83,8 @@ class ApiController extends Controller
         $p = Product::whereCode($code)->first();
         if($p) {
             $p->name = $name;
+            $p->um = $um;
+            $p->category = $category;
 
             $p->number = $number;
             $p->expiration = $expiration;
@@ -98,6 +102,8 @@ class ApiController extends Controller
 
         $p = new Product();
         $p->code = $code;
+        $p->um = $um;
+        $p->category = $category;
         $p->name = $name;
         $p->number = $number;
         $p->expiration = $expiration;

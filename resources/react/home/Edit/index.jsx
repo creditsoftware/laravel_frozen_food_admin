@@ -29,14 +29,16 @@ export default ({ id }) => {
     }, [labelData])
     const updLabel = data => {
         setLabel(p => ({ ...p, ...data, id })) & setDirty(true);
-        if (data.price.length == 0) {
-            let prod = productData.getProd
-            prod.product.price = ""
-            dispatch(updatePrice(prod))
-        } else {
-            let prod = productData.getProd
-            prod.product.price = data.price
-            dispatch(updatePrice(prod))
+        if(data.price) {
+            if (data.price.length == 0) {
+                let prod = productData.getProd
+                prod.product.price = ""
+                dispatch(updatePrice(prod))
+            } else {
+                let prod = productData.getProd
+                prod.product.price = data.price
+                dispatch(updatePrice(prod))
+            }
         }
     };
 
