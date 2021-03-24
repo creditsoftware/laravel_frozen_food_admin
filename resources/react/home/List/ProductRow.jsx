@@ -8,7 +8,7 @@ import productDetail from '../store/detail';
 import IconPop from '../UI/IconPop';
 
 
-export default ({id, code, name, activelabel, updated_at}) => {
+export default ({ id, code, name, activelabel, updated_at }) => {
     const dispatch = useDispatch();
     const exploded = useSelector(list.getIsExploded(id));
     const lbls = useSelector(labels.getByProdId(exploded && id));
@@ -26,7 +26,7 @@ export default ({id, code, name, activelabel, updated_at}) => {
 
     function changeCod() {
         const newCod = prompt(`Inserisci il nuovo codice per "${name}"`).trim();
-        if(!newCod) return;
+        if (!newCod) return;
         products.updCod(code, newCod) |> dispatch;
     }
 
@@ -34,14 +34,14 @@ export default ({id, code, name, activelabel, updated_at}) => {
 
     return <>
         <div className='product' onClick={toggleRow}>
-            <div><IconPop icon="edit" text="Codice" onClick={changeCod}/>{code}</div>
+            <div><IconPop icon="edit" text="Codice" onClick={changeCod} />{code}</div>
             <div>{name}</div>
-            <div>{active.description?.slice(0,100)}</div>
+            <div>{active.description?.slice(0, 100)}</div>
             <div>{active.notes}</div>
             <div>{updated_at}</div>
             <div>
-                <IconPop icon={exploded?"implode":"explode"} onClick={toggleRow} />
-                <IconPop icon="delete" text="Elimina" onClick={() => delProduct(id)}/>
+                <IconPop icon={exploded ? "implode" : "explode"} onClick={toggleRow} />
+                <IconPop icon="delete" text="Elimina" onClick={() => delProduct(id)} />
             </div>
 
         </div>
@@ -54,18 +54,18 @@ export default ({id, code, name, activelabel, updated_at}) => {
                     <div>{l.notes}</div>
                     <div>{l.updated_at}</div>
                     <div>
-                        <IconPop icon="edit" text="Modifica" onClick={() => { l.id |> nav.edit |> dispatch; code |> productDetail.getprod |> dispatch }}/>
-                        <IconPop icon="dupe" text="Duplica" onClick={() => l.id |> labels.dupe |> dispatch}/>
+                        <IconPop icon="edit" text="Modifica" onClick={() => { l.id |> nav.edit |> dispatch; code |> productDetail.getprod |> dispatch }} />
+                        <IconPop icon="dupe" text="Duplica" onClick={() => l.id |> labels.dupe |> dispatch} />
                         {
                             l.id === activelabel && <>
-                                <IconPop/>
-                                <IconPop icon="enabled"/>
+                                <IconPop />
+                                <IconPop icon="enabled" />
                             </>
                         }
                         {
                             l.id !== activelabel && <>
-                                <IconPop icon="delete" text="Elimina" onClick={() => delLabel(l.id)}/>
-                                <IconPop icon="disabled" text="Attiva" onClick={() => l.id |> products.active |> dispatch}/>
+                                <IconPop icon="delete" text="Elimina" onClick={() => delLabel(l.id)} />
+                                <IconPop icon="disabled" text="Attiva" onClick={() => l.id |> products.active |> dispatch} />
                             </>
                         }
                     </div>

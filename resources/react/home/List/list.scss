@@ -33,7 +33,50 @@
         }
     }
 
-
+    #filterLayout{
+        // display: flex;
+        // flex-direction: row;
+        // justify-content: center;
+        // flex-wrap: nowrap;
+        // width: 100%;
+        // div{
+        //     display: block;
+        // }
+        padding-left: 20px;
+        padding-right: 20px;
+        .swiper-slide{
+            div{
+            display: block!important;
+            }
+        }
+        .flex-div{
+            div{
+                 display: block!important;
+            }
+        }
+        .active{
+            border: 1px solid #142C87;
+            border-radius: 100%;
+            background-color: #142C87;
+            width: 60px;
+            height: 60px;
+            margin: auto;
+        }
+        .inActive{
+            border: 1px solid #142C87;
+            border-radius: 100%;
+            margin: auto;
+            width: 60px;
+            height: 60px;
+            transition: .5s;
+        }
+        img{
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            margin: 10px;
+        }
+    }
     #products {
         overflow-y: scroll;
         width: 100%;
