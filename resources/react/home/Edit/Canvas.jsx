@@ -197,7 +197,11 @@ async function canvasPaint(can, label, format, cfg, product) {
                 if (product['price'].includes(',')) {
                     price = (price / 1000).toFixed(2)
                 }
-                text = (size * price / 1000).toFixed(2)
+                if(product['um'] !== 'CONF.'){
+                    text = (size * price/1000).toFixed(2)
+                } else {
+                    text = price
+                }
             } else if (id === 'fao') {
                 if (text)
                     text = faos[text]
