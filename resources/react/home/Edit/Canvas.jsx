@@ -197,8 +197,8 @@ async function canvasPaint(can, label, format, cfg, product) {
                 if (product['price'].includes(',')) {
                     price = (price / 1000).toFixed(2)
                 }
-                if(product['um'] !== 'CONF.'){
-                    text = (size * price/1000).toFixed(2)
+                if (product['um'] !== 'CONF.') {
+                    text = (size * price / 1000).toFixed(2)
                 } else {
                     text = price
                 }
@@ -211,7 +211,11 @@ async function canvasPaint(can, label, format, cfg, product) {
             } else if (id === 'price') {
                 let price = product['price'].replace(',', '.') * 1
                 price = price.toFixed(2)
-                text = price.toString()
+                if (product['um'] !== 'KG.') {
+                    text = (price * 1000 / size).toFixed(2);
+                } else {
+                    text = price.toString()
+                }
             }
 
             if (id === 'packed' || id === 'expiration' || id === 'sizing') {
