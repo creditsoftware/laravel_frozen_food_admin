@@ -11,7 +11,7 @@ const Input = ({ format, label, update }) => {
                 <Fragment>
                     {uisize === 4 ? (
                         <textarea rows={uisize} value={label[id]} onChange={e => {
-                            if (e.target.value.substring(e.target.value.length - 3, e.target.value.length) === "id.") {
+                            if (e.target.value.substring(e.target.value.length - 3, e.target.value.length) === "di.") {
                                 update({ [id]: e.target.value + productData.getProd.product.sizing })
                             } else {
                                 update({ [id]: e.target.value })
