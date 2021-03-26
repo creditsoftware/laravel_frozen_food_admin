@@ -209,10 +209,14 @@ async function canvasPaint(can, label, format, cfg, product) {
                 if (text)
                     text = methods[text]
             } else if (id === 'price') {
+                let size = product['sizing'] && product['sizing'].split('-')[0] && product['sizing'].split('-')[0].split('gr')[0] * 1
+                if (product['sizing'] && product['sizing'].split('-').length > 1) {
+                    size = product['sizing'] && product['sizing'].split('-')[1] && product['sizing'].split('-')[1].split('gr')[0] * 1
+                }
                 let price = product['price'].replace(',', '.') * 1
                 price = price.toFixed(2)
                 if (product['um'] !== 'KG.') {
-                    text = (price * 1000 / size).toFixed(2);
+                    text = ((price * 1000) / size).toFixed(2);
                 } else {
                     text = price.toString()
                 }
