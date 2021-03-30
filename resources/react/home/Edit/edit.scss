@@ -116,3 +116,17 @@
     to {transform: rotate(360deg);}
 }
 
+.promotion{
+    .promotion-layout{
+    button{
+        background-color:#eee;
+        margin-left: 15px;
+        margin-right: 15px;
+        padding-top: 11px;
+        border-radius: 5px;
+    }
+    .check-button{
+        padding-top: 9px;
+    }
+}
+}
