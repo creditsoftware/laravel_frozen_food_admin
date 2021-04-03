@@ -43,7 +43,6 @@ class ApiController extends Controller
     }
 
     public function newProd(Request $request) {
-      
         $pdata = $request->json()->all();
         $prod = $pdata['product'];// product
         $batch = $pdata['batch'];// batch

@@ -28,8 +28,9 @@ export default ({ id }) => {
         }
     }, [labelData])
     const updLabel = data => {
+        console.log(data, "---------------->data")
         setLabel(p => ({ ...p, ...data, id })) & setDirty(true);
-        if(data.price) {
+        if (data.price) {
             if (data.price.length == 0) {
                 let prod = productData.getProd
                 prod.product.price = ""
