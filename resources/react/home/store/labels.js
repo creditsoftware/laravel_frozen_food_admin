@@ -40,7 +40,7 @@ function* save_saga({ label }) {
     const detail = yield select(({ detail }) => detail)
     const pp = product.filter((p) => p.id == payload.product_id);
     payload['sku'] = pp[0].code;
-    const { ok, err } = yield call(api.save, { ...label, code: detail.getProd.product.code ? detail.getProd.product.code : "", price: detail.getProd.product.price ? detail.getProd.product.price : 0 });
+    const { ok, err } = yield call(api.save, { ...label});
     const result = yield call(api.wp_save, payload);
     if (result === null) alert('Il prodotto corrispondente non esiste nel sito web.');
     if (err) return alert(err);

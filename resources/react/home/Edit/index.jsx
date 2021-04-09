@@ -18,8 +18,9 @@ import './edit.scss';
 export default ({ id }) => {
     const dispatch = useDispatch();
     const [dirty, setDirty] = useState(false);
-    const [label, setLabel] = useState(id |> labels.getById |> useSelector);
+    const [label, setLabel] = useState(useSelector(labels.getById(id)));
     const productData = useSelector(({ detail }) => detail);
+    const [product, setProduct] = useState({})
     const labelData = useSelector(({ labels }) => labels);
     useEffect(() => {
         if (labelData.length > 0) {
@@ -27,8 +28,12 @@ export default ({ id }) => {
             setLabel({ ...filterLabel[0] })
         }
     }, [labelData])
+    useEffect(()=>{
+        if(productData.getProd) {
+            setProduct(productData.getProd.product)
+        }
+    }, [productData])
     const updLabel = data => {
-        console.log(data, "---------------->data")
         setLabel(p => ({ ...p, ...data, id })) & setDirty(true);
         if (data.price) {
             if (data.price.length == 0) {
@@ -41,15 +46,21 @@ export default ({ id }) => {
                 dispatch(updatePrice(prod))
             }
         }
+        if(data.show_retail === 1 || data.show_retail === 0) {
+            setProduct({...product, show_retail:data.show_retail})
+        }
+        if(data.retail_price || data.retail_price === 0) {
+            setProduct({...product, retail_price:data.retail_price})
+        }
     };
 
     function exit() {
         if (dirty && !confirm("Uscire senza salvare?")) return;
-        nav.home() |> dispatch;
+        dispatch(nav.home());
     }
     function save() {
-        label |> labels.save |> dispatch;
-        nav.home() |> dispatch;
+        dispatch(labels.save({...label, ...product}));
+        dispatch(nav.home());
     }
     return <div id='main-edit'>
         <Toolbar>

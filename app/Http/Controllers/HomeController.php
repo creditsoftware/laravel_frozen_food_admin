@@ -82,43 +82,47 @@ class HomeController extends Controller
     }
 
     public function save() {
-        $id = request()->get('id');
-        $code = request()->get('code');
-        $price = request()->get('price');
-        $p = Product::whereCode($code)->first();
-        if(!$p) return ['err' => 'product not found'];
-        $p->retail_price = request()->get('retail_price');
-        $p->show_retail = request()->get('show_retail');
-        $p->price = $price;
-        $p->save();
-        $l = Label::find($id);
-        if(!$l) return ['err' => 'label not found'];
-        $l->notes = request()->get('notes');
-        $l->name = request()->get('name');
-        $l->webdesc = request()->get('webdesc');
-        $l->ingredients = request()->get('ingredients');
-        $l->recipes = request()->get('recipes');
-        $l->allergens = request()->get('allergens');
-
-        $l->energy = request()->get('energy');
-        $l->carbo = request()->get('carbo');
-        $l->protein = request()->get('protein');
-        $l->fat = request()->get('fat');
-        $l->acidfat = request()->get('acidfat');
-        $l->sugar = request()->get('sugar');
-        $l->salt = request()->get('salt');
-
-        $l->image1 = request()->get('image1');
-        $l->image2 = request()->get('image2');
-        $l->image3 = request()->get('image3');
-        $l->image4 = request()->get('image4');
-        $l->save();
-
-        $l->product->touch();
-
-        $this->deleteOtherImages($id, [$l->image1, $l->image2, $l->image3, $l->image4]);
-
-        return ['ok' => $l];
+        try{
+            $id = request()->get('id');
+            $code = request()->get('code');
+            $price = request()->get('price');
+            $p = Product::whereCode($code)->first();
+            if(!$p) return ['err' => 'product not found'];
+            $p->retail_price = request()->get('retail_price');
+            $p->show_retail = request()->get('show_retail');
+            $p->price = $price;
+            $p->save();
+            $l = Label::find($id);
+            if(!$l) return ['err' => 'label not found'];
+            $l->notes = request()->get('notes');
+            $l->name = request()->get('name');
+            $l->webdesc = request()->get('webdesc');
+            $l->ingredients = request()->get('ingredients');
+            $l->recipes = request()->get('recipes');
+            $l->allergens = request()->get('allergens');
+    
+            $l->energy = request()->get('energy');
+            $l->carbo = request()->get('carbo');
+            $l->protein = request()->get('protein');
+            $l->fat = request()->get('fat');
+            $l->acidfat = request()->get('acidfat');
+            $l->sugar = request()->get('sugar');
+            $l->salt = request()->get('salt');
+    
+            $l->image1 = request()->get('image1');
+            $l->image2 = request()->get('image2');
+            $l->image3 = request()->get('image3');
+            $l->image4 = request()->get('image4');
+            $l->save();
+    
+            $l->product->touch();
+    
+            $this->deleteOtherImages($id, [$l->image1, $l->image2, $l->image3, $l->image4]);
+    
+            return ['ok' => $l];
+        } catch(Exception $err) {
+            return ['error'=>json_encode($err)];
+        }
     }
 
     public function uploadImage($id) {

@@ -79,7 +79,7 @@ export default function List() {
   return <div id='main-list'>
     <Toolbar>
       <div>
-        <input type='text' placeholder='Ricerca Prodotto' value={search} onChange={e => e.target.value |> list.search |> dispatch} />
+        <input type='text' placeholder='Ricerca Prodotto' value={search} onChange={e => dispatch(list.search(e.target.value))} />
         <IconBtn text='logout' icon='logout' onClick={() => window.location.href = _URL('/logout')} />
       </div>
     </Toolbar>
@@ -90,8 +90,6 @@ export default function List() {
       <Swiper
         spaceBetween={50}
         slidesPerView={15}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
       >
         {categoryList.map((item, index) => {
           return (

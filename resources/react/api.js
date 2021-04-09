@@ -17,12 +17,14 @@ const wordpress_api = async (payload) => {
     for (let i in payload) {
         body_data += `&${i}=${payload[i]}`
     }
-    const res = await fetch('https://picchionisurgelati.it/wp-admin/admin-ajax.php', {
+    // const res = await fetch('https://picchionisurgelati.it/wp-admin/admin-ajax.php', {
+    const res = await fetch('http://localhost/20210203cristian/wp/wordpress/wp-admin/admin-ajax.php',{
         // const res = await fetch('http://localhost/wordpress/wp-admin/admin-ajax.php',{
         method: payload ? 'POST' : 'GET',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
         },
+        mode:'no-cors',
         body: body_data,
     });
     const ret = res.json();
@@ -41,7 +43,6 @@ export const delLabel = id => ajax(`delLabel/${id}`);
 export const delProduct = id => ajax(`delProduct/${id}`);
 export const active = id => ajax(`active/${id}`);
 export const save = label => ajax_save('save', label);
-// export const send_data = label => ajax('save', label);
 export const updCod = (oldCod, newCod) => ajax('updCod', { oldCod, newCod });
 export const wp_save = (label) => wordpress_api(label);
 export const getLabelImage = async fname => {
@@ -56,7 +57,7 @@ function uploadFile(url, blob, progress) {
     return new Promise((res, rej) => {
         const req = new XMLHttpRequest();
         req.open('post', url);
-        req.upload.addEventListener('progress', e => (e.loaded * 100 / e.total) |> progress);
+        req.upload.addEventListener('progress', e => progress(e.loaded * 100 / e.total));
         req.addEventListener('load', e => {
             if (req.status !== 200) return rej(`HTTP Error: ${req.status}`);
             res(req.response);

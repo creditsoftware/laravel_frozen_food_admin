@@ -7,7 +7,6 @@ import FileDrop from './FileDrop';
 import { useEffect, useState } from 'react';
 import './edit.scss'
 const Settings = ({ label, update }) => {
-  const dispatch = useDispatch();
   const [showStatus, setShowStatus] = useState(false);
   const [priceValue, setPriceValue] = useState({
     promoConfValue: "",
@@ -97,7 +96,7 @@ const Settings = ({ label, update }) => {
           </div>
           <div style={{ display: 'block', paddingTop: '24px', paddingBottom: '10px', width: '20%' }}>
             <input type="checkbox" id="off" name="off" checked={showStatus} onChange={checkChangeAction} />
-            <label for="scales">Show</label>
+            <label for="off">Show</label>
             <button style={{ height: '37px', width: '52px' }} onClick={switchButton}>
               <img width="20px" height="15px" src={_URL(`/img/arrow-left.png`)} />
             </button>
@@ -116,9 +115,6 @@ const Settings = ({ label, update }) => {
       <Input format={{ id: 'webdesc', title: 'Descrizione Web', uisize: 4 }} label={label} update={update} />
 
       <FileDrop label={label} update={update} />
-
-      {/*<button onClick={() => dispatch({type:'HACK+'})}>+</button>*/}
-      {/*<button onClick={() => dispatch({type:'HACK-'})}>-</button>*/}
     </div>
   );
 };
