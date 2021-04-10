@@ -84,7 +84,7 @@ class ApiController extends Controller
             $p->name = $name;
             $p->um = $um;
             $p->category = $category;
-
+            
             $p->number = $number;
             $p->expiration = $expiration;
             $p->packed = $packed;
@@ -93,7 +93,11 @@ class ApiController extends Controller
             $p->method = $method;
             $p->latin = $latin;
             $p->sizing = $sizing;
-            $p->price = $price;
+            if($p->show_promo){
+                $p->price = $price;
+            } else {
+                $p->promo_price = $price;
+            }
             $p->glazing = $glazing;            
             $p->save();
             return ['ok' => 'product updated'];

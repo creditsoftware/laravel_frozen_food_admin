@@ -88,8 +88,8 @@ class HomeController extends Controller
             $price = request()->get('price');
             $p = Product::whereCode($code)->first();
             if(!$p) return ['err' => 'product not found'];
-            $p->retail_price = request()->get('retail_price');
-            $p->show_retail = request()->get('show_retail');
+            $p->promo_price = request()->get('promo_price');
+            $p->show_promo = request()->get('show_promo');
             $p->price = $price;
             $p->save();
             $l = Label::find($id);

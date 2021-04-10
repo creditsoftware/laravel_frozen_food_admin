@@ -46,11 +46,11 @@ export default ({ id }) => {
                 dispatch(updatePrice(prod))
             }
         }
-        if(data.show_retail === 1 || data.show_retail === 0) {
-            setProduct({...product, show_retail:data.show_retail})
+        if(data.show_promo === 1 || data.show_promo === 0) {
+            setProduct({...product, show_promo:data.show_promo})
         }
-        if(data.retail_price || data.retail_price === 0) {
-            setProduct({...product, retail_price:data.retail_price})
+        if(data.promo_price || data.promo_price === 0) {
+            setProduct({...product, promo_price:data.promo_price})
         }
     };
 

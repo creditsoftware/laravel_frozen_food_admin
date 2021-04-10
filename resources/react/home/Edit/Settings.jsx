@@ -23,16 +23,16 @@ const Settings = ({ label, update }) => {
       [name]: event.target.value
     })
     if (name == "listinoConfValue") {
-      update({ retail_price: event.target.value })
+      update({ promo_price: event.target.value })
     }
   }
   const checkChangeAction = (event) => {
     setShowStatus(event.target.checked)
     if (event.target.checked) {
-      update({ show_retail: 1 })
+      update({ show_promo: 1 })
 
     } else {
-      update({ show_retail: 0 })
+      update({ show_promo: 0 })
     }
   }
   let product = productData.getProd && productData.getProd.product;
@@ -55,7 +55,7 @@ const Settings = ({ label, update }) => {
         kgPrice = (price * 1).toFixed(2)
         confPrice = (size * price / 1000).toFixed(2)
       }
-      if (product["show_retail"] == 0) {
+      if (product["show_promo"] == 0) {
         setShowStatus(false)
       } else {
         setShowStatus(true)
@@ -75,7 +75,7 @@ const Settings = ({ label, update }) => {
       listinoKgValue: priceValue.promoKgValue,
       listinoConfValue: priceValue.promoConfValue
     })
-    update({ retail_price: priceValue.promoConfValue })
+    update({ promo_price: priceValue.promoConfValue })
   }
   return (
     <div id='settings'>
@@ -85,29 +85,29 @@ const Settings = ({ label, update }) => {
         <Input format={{ id: 'price', title: "Price", uisize: 0.25 }} label={product} update={update} />
       }
       <div className="promotion" style={{ width: '100%' }}>
-        <div className="promotion-layout" style={{ width: '100%' }}>
+        <div className="promotion-layout" style={{ width: '100%', alignItems:'center'}}>
           <div style={{ display: 'block', paddingTop: '10px', paddingBottom: '10px', width: '20%' }}>
             <p>Promotion Conf Value</p>
-            <input type="number" placeholder="" value={priceValue.promoConfValue} onChange={handleChange("promoConfValue")} />
+            <input type="number" placeholder="" value={priceValue.listinoConfValue} onChange={handleChange("listinoConfValue")} />
           </div>
           <div style={{ display: 'block', paddingTop: '10px', paddingBottom: '10px', width: '20%' }}>
             <p>Promotion Kg Value</p>
-            <input type="number" placeholder="" value={priceValue.promoKgValue} onChange={handleChange("promoKgValue")} />
+            <input type="number" placeholder="" value={priceValue.listinoKgValue} onChange={handleChange("listinoKgValue")} />
           </div>
           <div style={{ display: 'block', paddingTop: '24px', paddingBottom: '10px', width: '20%' }}>
             <input type="checkbox" id="off" name="off" checked={showStatus} onChange={checkChangeAction} />
             <label for="off">Show</label>
-            <button style={{ height: '37px', width: '52px' }} onClick={switchButton}>
+            {/* <button style={{ height: '37px', width: '52px' }} onClick={switchButton}>
               <img width="20px" height="15px" src={_URL(`/img/arrow-left.png`)} />
-            </button>
+            </button> */}
           </div>
           <div style={{ display: 'block', paddingTop: '10px', paddingBottom: '10px', width: '20%' }}>
             <p>Listino Conf Value</p>
-            <input type="number" placeholder="" value={priceValue.listinoConfValue} onChange={handleChange("listinoConfValue")} />
+            <input type="number" placeholder="" value={priceValue.promoConfValue} onChange={handleChange("promoConfValue")} />
           </div>
           <div style={{ display: 'block', paddingTop: '10px', paddingBottom: '10px', width: '20%' }}>
             <p>Listino Kg Value</p>
-            <input type="number" placeholder="" value={priceValue.listinoKgValue} onChange={handleChange("listinoKgValue")} />
+            <input type="number" placeholder="" value={priceValue.promoKgValue} onChange={handleChange("promoKgValue")} />
           </div>
         </div>
       </div>
