@@ -32,7 +32,12 @@ const Settings = ({ label, update }) => {
         [name]: event.target.value,
         listinoConfValue:price
       })
-      update({ promo_price: price })
+      if (um == 'CONF.') {
+        update({ promo_price: price })
+      }
+      if (um == 'KG.') {
+        update({ promo_price: event.target.value })
+      }
     }
     if(name === 'listinoConfValue') {
       setPriceValue({
@@ -40,7 +45,12 @@ const Settings = ({ label, update }) => {
         [name]: event.target.value,
         listinoKgValue:price
       })
-      update({ promo_price: event.target.value })
+      if (um == 'CONF.') {
+        update({ promo_price: event.target.value })
+      }
+      if (um == 'KG.') {
+        update({ promo_price: price })
+      }
     }
     if(name === 'promoConfValue') {
       setPriceValue({
@@ -48,7 +58,12 @@ const Settings = ({ label, update }) => {
         [name]: event.target.value,
         promoKgValue:price
       })
-      update({ price: event.target.value })
+      if (um == 'CONF.') {
+        update({ price: event.target.value })
+      }
+      if (um == 'KG.') {
+        update({ price: price })
+      }
     }
     if(name === 'promoKgValue') {
       setPriceValue({
@@ -56,7 +71,12 @@ const Settings = ({ label, update }) => {
         [name]: event.target.value,
         promoConfValue:price
       })
-      update({ price: price })
+      if (um == 'CONF.') {
+        update({ price: price })
+      }
+      if (um == 'KG.') {
+        update({ price: event.target.value })
+      }
     }
   }
   const checkChangeAction = (event) => {
