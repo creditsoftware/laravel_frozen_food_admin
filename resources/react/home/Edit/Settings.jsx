@@ -9,6 +9,7 @@ import './edit.scss'
 const Settings = ({ label, update }) => {
   const [showStatus, setShowStatus] = useState(false);
   const [sizeOfUnit, setSizeOfUnit] = useState(0);
+  const [unit, setUnit] = useState('KG.');
   const [priceValue, setPriceValue] = useState({
     promoConfValue: "",
     promoKgValue: "",
@@ -32,10 +33,10 @@ const Settings = ({ label, update }) => {
         [name]: event.target.value,
         listinoConfValue:price
       })
-      if (um == 'CONF.') {
+      if (unit == 'CONF.') {
         update({ promo_price: price })
       }
-      if (um == 'KG.') {
+      if (unit == 'KG.') {
         update({ promo_price: event.target.value })
       }
     }
@@ -45,10 +46,11 @@ const Settings = ({ label, update }) => {
         [name]: event.target.value,
         listinoKgValue:price
       })
-      if (um == 'CONF.') {
+      if (unit == 'CONF.') {
+        // update({ promo_price: price })
         update({ promo_price: event.target.value })
       }
-      if (um == 'KG.') {
+      if (unit == 'KG.') {
         update({ promo_price: price })
       }
     }
@@ -58,10 +60,10 @@ const Settings = ({ label, update }) => {
         [name]: event.target.value,
         promoKgValue:price
       })
-      if (um == 'CONF.') {
+      if (unit == 'CONF.') {
         update({ price: event.target.value })
       }
-      if (um == 'KG.') {
+      if (unit == 'KG.') {
         update({ price: price })
       }
     }
@@ -71,10 +73,10 @@ const Settings = ({ label, update }) => {
         [name]: event.target.value,
         promoConfValue:price
       })
-      if (um == 'CONF.') {
+      if (unit == 'CONF.') {
         update({ price: price })
       }
-      if (um == 'KG.') {
+      if (unit == 'KG.') {
         update({ price: event.target.value })
       }
     }
@@ -83,7 +85,6 @@ const Settings = ({ label, update }) => {
     setShowStatus(event.target.checked)
     if (event.target.checked) {
       update({ show_promo: 1 })
-
     } else {
       update({ show_promo: 0 })
     }
@@ -91,12 +92,19 @@ const Settings = ({ label, update }) => {
   let product = productData.getProd && productData.getProd.product;
   useEffect(() => {
     if (product) {
+      if (product["show_promo"] === 1) {
+        setShowStatus(true)
+        update({ show_promo: 1 })
+      } else {
+        setShowStatus(false)
+        update({ show_promo: 0 })
+      }
       let size = product['sizing'] && product['sizing'].split('-')[0] && product['sizing'].split('-')[0].split('gr')[0] * 1
       if (product['sizing'] && product['sizing'].split('-').length > 1) {
         size = product['sizing'] && product['sizing'].split('-')[1] && product['sizing'].split('-')[1].split('gr')[0] * 1
       }
       setSizeOfUnit(size)
-      let price = product['price'].replace(',', '.') * 1
+      let price = product['price'] ? product['price'].replace(',', '.') * 1 : 0
       let l_price = product['promo_price'] ? product['promo_price'].replace(',', '.') * 1 : 0
       price = price.toFixed(2);
       l_price = l_price.toFixed(2);
@@ -116,12 +124,8 @@ const Settings = ({ label, update }) => {
         l_kgPrice = (l_price * 1).toFixed(2)
         l_confPrice = (size * l_price / 1000).toFixed(2)
       }
-
-      if (product["show_promo"] == 0) {
-        setShowStatus(false)
-      } else {
-        setShowStatus(true)
-      }
+      setUnit(product['um']);
+     
       setPriceValue({
         ...priceValue,
         promoKgValue: kgPrice,

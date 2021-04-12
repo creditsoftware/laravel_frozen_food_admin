@@ -24,7 +24,6 @@ const wordpress_api = async (payload) => {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
         },
-        mode:'no-cors',
         body: body_data,
     });
     const ret = res.json();
