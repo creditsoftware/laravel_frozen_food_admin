@@ -32,6 +32,7 @@ const Settings = ({ label, update }) => {
         [name]: event.target.value,
         listinoConfValue:price
       })
+      update({ promo_price: price })
     }
     if(name === 'listinoConfValue') {
       setPriceValue({
@@ -39,6 +40,7 @@ const Settings = ({ label, update }) => {
         [name]: event.target.value,
         listinoKgValue:price
       })
+      update({ promo_price: event.target.value })
     }
     if(name === 'promoConfValue') {
       setPriceValue({
@@ -46,6 +48,7 @@ const Settings = ({ label, update }) => {
         [name]: event.target.value,
         promoKgValue:price
       })
+      update({ price: event.target.value })
     }
     if(name === 'promoKgValue') {
       setPriceValue({
@@ -53,9 +56,7 @@ const Settings = ({ label, update }) => {
         [name]: event.target.value,
         promoConfValue:price
       })
-    }
-    if (name == "listinoConfValue") {
-      update({ promo_price: event.target.value })
+      update({ price: price })
     }
   }
   const checkChangeAction = (event) => {
@@ -76,7 +77,7 @@ const Settings = ({ label, update }) => {
       }
       setSizeOfUnit(size)
       let price = product['price'].replace(',', '.') * 1
-      let l_price = product['promo_price'].replace(',', '.') * 1
+      let l_price = product['promo_price'] ? product['promo_price'].replace(',', '.') * 1 : 0
       price = price.toFixed(2);
       l_price = l_price.toFixed(2);
       let kgPrice = 0;
