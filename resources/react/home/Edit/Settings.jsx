@@ -92,7 +92,7 @@ const Settings = ({ label, update }) => {
   let product = productData.getProd && productData.getProd.product;
   useEffect(() => {
     if (product) {
-      if (product["show_promo"] === 1) {
+      if (product["show_promo"] === '1') {
         setShowStatus(true)
         update({ show_promo: 1 })
       } else {
