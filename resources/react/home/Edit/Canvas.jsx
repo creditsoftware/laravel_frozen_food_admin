@@ -198,9 +198,9 @@ async function canvasPaint(can, label, format, cfg, product) {
                     price = (price / 1000).toFixed(2)
                 }
                 if (product['um'] !== 'CONF.') {
-                    text = (size * price / 1000).toFixed(2)
+                    text = (Math.round(size * price*20 / 1000)/20).toFixed(2)
                 } else {
-                    text = price
+                    text = (Math.round(price*20)/20).toFixed(2).toString()
                 }
             } else if (id === 'fao') {
                 if (text)
@@ -216,9 +216,9 @@ async function canvasPaint(can, label, format, cfg, product) {
                 let price = product['price'].toString().replace(',', '.') * 1
                 price = price.toFixed(2)
                 if (product['um'] !== 'KG.') {
-                    text = ((price * 1000) / size).toFixed(2);
+                    text = (Math.round((price * 1000*20) / size)/20).toFixed(2);
                 } else {
-                    text = price.toString()
+                    text = (Math.round(price*20)/20).toFixed(2).toString()
                 }
             }
 

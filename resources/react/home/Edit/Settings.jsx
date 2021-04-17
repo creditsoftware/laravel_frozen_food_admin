@@ -132,10 +132,10 @@ const Settings = ({ label, update }) => {
       
       setPriceValue({
         ...priceValue,
-        promoKgValue: Math.round(kgPrice*20)/20,
-        promoConfValue: Math.round(confPrice*20)/20,
-        listinoKgValue:Math.round(l_kgPrice*20)/20,
-        listinoConfValue:Math.round(l_confPrice*20)/20,
+        promoKgValue: (Math.round(kgPrice*20)/20).toFixed(2),
+        promoConfValue: (Math.round(confPrice*20)/20).toFixed(2),
+        listinoKgValue:(Math.round(l_kgPrice*20)/20).toFixed(2),
+        listinoConfValue:(Math.round(l_confPrice*20)/20).toFixed(2),
       })
     }
   }, [product])
