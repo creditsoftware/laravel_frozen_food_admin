@@ -193,8 +193,8 @@ async function canvasPaint(can, label, format, cfg, product) {
                 if (product['sizing'] && product['sizing'].split('-').length > 1) {
                     size = product['sizing'] && product['sizing'].split('-')[1] && product['sizing'].split('-')[1].split('gr')[0] * 1
                 }
-                let price = product['price'].replace(',', '') * 1
-                if (product['price'].includes(',')) {
+                let price = product['price'].toString().replace(',', '') * 1
+                if (product['price'].toString().includes(',')) {
                     price = (price / 1000).toFixed(2)
                 }
                 if (product['um'] !== 'CONF.') {
@@ -213,7 +213,7 @@ async function canvasPaint(can, label, format, cfg, product) {
                 if (product['sizing'] && product['sizing'].split('-').length > 1) {
                     size = product['sizing'] && product['sizing'].split('-')[1] && product['sizing'].split('-')[1].split('gr')[0] * 1
                 }
-                let price = product['price'].replace(',', '.') * 1
+                let price = product['price'].toString().replace(',', '.') * 1
                 price = price.toFixed(2)
                 if (product['um'] !== 'KG.') {
                     text = ((price * 1000) / size).toFixed(2);
@@ -312,7 +312,7 @@ function splitText(measure, text, w) {
     let n = 0;
     while (words.length > 0 && n < words.length) {
         const ws = words.slice(0, n + 1);
-        const str = ' ' |> ws.join;
+        const str = ws.join(' ');
 
         if (measure(str) > w) {
             rows.push(words.slice(0, n).join(' '));

@@ -19,36 +19,40 @@ const Settings = ({ label, update }) => {
   })
   const format = useSelector(formats.getById(1));
   const productData = useSelector(({ detail }) => detail);
+  const toFixedHalf2 = (num) => {
+    return Math.round(num*20)/20
+  }
   const handleChange = (name, um) => (event) => {
+    let eValue = event.target.value
     let price = 0
     if (um == 'CONF.') {
-      price = ((event.target.value * 1000) / sizeOfUnit).toFixed(2);
+      price = ((eValue * 1000) / sizeOfUnit).toFixed(2);
     }
     if (um == 'KG.') {
-      price = (sizeOfUnit * event.target.value / 1000).toFixed(2)
+      price = (sizeOfUnit * eValue / 1000).toFixed(2)
     }
+    price = toFixedHalf2(price)
     if(name === 'listinoKgValue') {
       setPriceValue({
         ...priceValue,
-        [name]: event.target.value,
+        [name]: eValue,
         listinoConfValue:price
       })
       if (unit == 'CONF.') {
         update({ promo_price: price })
       }
       if (unit == 'KG.') {
-        update({ promo_price: event.target.value })
+        update({ promo_price: toFixedHalf2(eValue) })
       }
     }
     if(name === 'listinoConfValue') {
       setPriceValue({
         ...priceValue,
-        [name]: event.target.value,
+        [name]: eValue,
         listinoKgValue:price
       })
       if (unit == 'CONF.') {
-        // update({ promo_price: price })
-        update({ promo_price: event.target.value })
+        update({ promo_price: toFixedHalf2(eValue) })
       }
       if (unit == 'KG.') {
         update({ promo_price: price })
@@ -57,11 +61,11 @@ const Settings = ({ label, update }) => {
     if(name === 'promoConfValue') {
       setPriceValue({
         ...priceValue,
-        [name]: event.target.value,
+        [name]: eValue,
         promoKgValue:price
       })
       if (unit == 'CONF.') {
-        update({ price: event.target.value })
+        update({ price: toFixedHalf2(eValue) })
       }
       if (unit == 'KG.') {
         update({ price: price })
@@ -70,14 +74,14 @@ const Settings = ({ label, update }) => {
     if(name === 'promoKgValue') {
       setPriceValue({
         ...priceValue,
-        [name]: event.target.value,
+        [name]: eValue,
         promoConfValue:price
       })
       if (unit == 'CONF.') {
         update({ price: price })
       }
       if (unit == 'KG.') {
-        update({ price: event.target.value })
+        update({ price: toFixedHalf2(eValue) })
       }
     }
   }
@@ -125,13 +129,13 @@ const Settings = ({ label, update }) => {
         l_confPrice = (size * l_price / 1000).toFixed(2)
       }
       setUnit(product['um']);
-     
+      
       setPriceValue({
         ...priceValue,
-        promoKgValue: kgPrice,
-        promoConfValue: confPrice,
-        listinoKgValue:l_kgPrice,
-        listinoConfValue:l_confPrice,
+        promoKgValue: Math.round(kgPrice*20)/20,
+        promoConfValue: Math.round(confPrice*20)/20,
+        listinoKgValue:Math.round(l_kgPrice*20)/20,
+        listinoConfValue:Math.round(l_confPrice*20)/20,
       })
     }
   }, [product])
