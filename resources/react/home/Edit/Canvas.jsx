@@ -152,7 +152,7 @@ function Canvas({ w, h, label, product }) {
     const refCanvas = useRef(null);
 
     const format = useSelector(formats.getById(1));
-    const cfg = { label: 0 }; //useSelector(s => s.cfg);
+    const cfg = { label: 0 };
     useLayoutEffect(() => { canvasPaint(refCanvas.current, label, format, cfg, product) }, [label, format, cfg, w, h, product]);
     return <canvas id="canvas" ref={refCanvas} width={w} height={h} product={product} />;
 }
@@ -195,10 +195,10 @@ async function canvasPaint(can, label, format, cfg, product) {
                 }
                 let price = product['price'].toString().replace(',', '') * 1
                 if (product['price'].toString().includes(',')) {
-                    price = (price / 1000).toFixed(2)
+                    price = price / 1000
                 }
                 if (product['um'] !== 'CONF.') {
-                    text = (Math.round(size * price*20 / 1000)/20).toFixed(2)
+                    text = (Math.round((size * price / 1000)*20)/20).toFixed(2)
                 } else {
                     text = (Math.round(price*20)/20).toFixed(2).toString()
                 }
@@ -214,7 +214,6 @@ async function canvasPaint(can, label, format, cfg, product) {
                     size = product['sizing'] && product['sizing'].split('-')[1] && product['sizing'].split('-')[1].split('gr')[0] * 1
                 }
                 let price = product['price'].toString().replace(',', '.') * 1
-                price = price.toFixed(2)
                 if (product['um'] !== 'KG.') {
                     text = (Math.round((price * 1000*20) / size)/20).toFixed(2);
                 } else {

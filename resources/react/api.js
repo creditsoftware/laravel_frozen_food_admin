@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 const api = async (endpoint, payload) => {
     const res = await fetch(_URL(endpoint), {
         method: payload ? 'POST' : 'GET',
@@ -32,7 +31,6 @@ const wordpress_api = async (payload) => {
 const ajax = (endpoint, payload) => api(`ajax/${endpoint}`, payload);
 const ajax_save = (endpoint, payload) => {
     return api(`ajax/${endpoint}`, payload);
-    // wordpress_api(payload)
 }
 
 export const login = (name, password) => api('login', { name, password });

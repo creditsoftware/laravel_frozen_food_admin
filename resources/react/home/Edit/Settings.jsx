@@ -108,25 +108,25 @@ const Settings = ({ label, update }) => {
         size = product['sizing'] && product['sizing'].split('-')[1] && product['sizing'].split('-')[1].split('gr')[0] * 1
       }
       setSizeOfUnit(size)
-      let price = product['price'] ? product['price'].replace(',', '.') * 1 : 0
-      let l_price = product['promo_price'] ? product['promo_price'].replace(',', '.') * 1 : 0
-      price = price.toFixed(2);
-      l_price = l_price.toFixed(2);
+      let price = product['price'] !== null ? product['price'].toString().replace(',', '.') * 1 : 0
+      let l_price = product['promo_price'] !== null ? product['promo_price'].toString().replace(',', '.') * 1 : 0
+      price = price;
+      l_price = l_price;
       let kgPrice = 0;
       let confPrice = 0;
       let l_kgPrice = 0;
       let l_confPrice = 0;
       if (product['um'] == 'CONF.') {
-        kgPrice = ((price * 1000) / size).toFixed(2);
-        confPrice = price * 1;
-        l_kgPrice = ((l_price * 1000) / size).toFixed(2);
-        l_confPrice = l_price * 1;
+        kgPrice = ((price * 1000) / size);
+        confPrice = (price * 1);
+        l_kgPrice = ((l_price * 1000) / size);
+        l_confPrice = (l_price * 1);
       }
       if (product['um'] == 'KG.') {
-        kgPrice = (price * 1).toFixed(2)
-        confPrice = (size * price / 1000).toFixed(2)
-        l_kgPrice = (l_price * 1).toFixed(2)
-        l_confPrice = (size * l_price / 1000).toFixed(2)
+        kgPrice = (price * 1)
+        confPrice = (size * price / 1000)
+        l_kgPrice = (l_price * 1)
+        l_confPrice = (size * l_price / 1000)
       }
       setUnit(product['um']);
       
