@@ -88,9 +88,9 @@ const Settings = ({ label, update }) => {
   const checkChangeAction = (event) => {
     setShowStatus(event.target.checked)
     if (event.target.checked) {
-      update({ show_promo: 1 })
+      update({ show_promo: '1' })
     } else {
-      update({ show_promo: 0 })
+      update({ show_promo: '0' })
     }
   }
   let product = productData.getProd && productData.getProd.product;
@@ -98,10 +98,10 @@ const Settings = ({ label, update }) => {
     if (product) {
       if (product["show_promo"] === '1') {
         setShowStatus(true)
-        update({ show_promo: 1 })
+        update({ show_promo: '1' })
       } else {
         setShowStatus(false)
-        update({ show_promo: 0 })
+        update({ show_promo: '0' })
       }
       let size = product['sizing'] && product['sizing'].split('-')[0] && product['sizing'].split('-')[0].split('gr')[0] * 1
       if (product['sizing'] && product['sizing'].split('-').length > 1) {

@@ -193,7 +193,12 @@ async function canvasPaint(can, label, format, cfg, product) {
                 if (product['sizing'] && product['sizing'].split('-').length > 1) {
                     size = product['sizing'] && product['sizing'].split('-')[1] && product['sizing'].split('-')[1].split('gr')[0] * 1
                 }
-                let price = product['price'] ? product['price'].toString().replace(',', '') * 1 : 0
+                let price
+                if(product['show_promo'] === '1'){
+                    price = product['price'] ? product['price'].toString().replace(',', '') * 1 : 0
+                } else {
+                    price = product['promo_price'] ? product['promo_price'].toString().replace(',', '') * 1000 : 0
+                }
                 if (product['price'] && product['price'].toString().includes(',')) {
                     price = price / 1000
                 }
@@ -213,7 +218,12 @@ async function canvasPaint(can, label, format, cfg, product) {
                 if (product['sizing'] && product['sizing'].split('-').length > 1) {
                     size = product['sizing'] && product['sizing'].split('-')[1] && product['sizing'].split('-')[1].split('gr')[0] * 1
                 }
-                let price = product['price'] ? product['price'].toString().replace(',', '.') * 1 : 0
+                let price
+                if(product['show_promo'] === '1'){
+                    price = product['price'] ? product['price'].toString().replace(',', '.') * 1 : 0
+                } else {
+                    price = product['promo_price'] ? product['promo_price'].toString().replace(',', '') * 1000 : 0
+                }
                 if (product['um'] !== 'KG.') {
                     text = (Math.round((price * 1000*20) / size)/20).toFixed(2);
                 } else {

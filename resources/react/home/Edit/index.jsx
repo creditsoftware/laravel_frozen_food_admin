@@ -46,11 +46,18 @@ export default ({ id }) => {
                 dispatch(updatePrice(prod))
             }
         }
-        if(data.show_promo === 1 || data.show_promo === 0) {
+        if(data.show_promo === '1' || data.show_promo === '0') {
+            console.log(data)
             setProduct({...product, show_promo:data.show_promo})
+            let prod = productData.getProd
+            prod.product.show_promo = data.show_promo
+            dispatch(updatePrice(prod))
         }
         if(data.promo_price || data.promo_price === 0) {
             setProduct({...product, promo_price:data.promo_price})
+            let prod = productData.getProd
+            prod.product.promo_price = data.promo_price
+            dispatch(updatePrice(prod))
         }
     };
 
@@ -59,7 +66,7 @@ export default ({ id }) => {
         dispatch(nav.home());
     }
     function save() {
-        dispatch(labels.save({...label, ...product}));
+        dispatch(labels.save({...product, ...label}));
         dispatch(nav.home());
     }
     return <div id='main-edit'>
