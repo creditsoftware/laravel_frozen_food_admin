@@ -49,7 +49,7 @@ export default function List() {
 
   const prods = useMemo(() => allProds.filter(p => strstri(p.name, search) || strstri(p.code, search)), [allProds, search]);
   useEffect(() => {
-    if (prods.length > 0) {
+    if (prods && prods.length > 0) {
       setProductList(prods)
     }
   }, [prods])
@@ -116,7 +116,7 @@ export default function List() {
         <div>Modificato</div>
         <div>Azioni</div>
       </div>
-      {productList.length > 0 && productList.sort((a, b) => {
+      {productList && productList.length > 0 && productList.sort((a, b) => {
         if (a.name < b.name) {
           return -1;
         }

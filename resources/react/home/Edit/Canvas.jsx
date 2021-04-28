@@ -195,15 +195,15 @@ async function canvasPaint(can, label, format, cfg, product) {
                 }
                 let price
                 if(product['show_promo'] === '1'){
-                    price = product['price'] ? product['price'].toString().replace(',', '') * 1 : 0
+                    price = product['promo_price'] ? product['promo_price'].toString().replace(',', '.') * 1 : 0
                 } else {
-                    price = product['promo_price'] ? product['promo_price'].toString().replace(',', '') * 1000 : 0
+                    price = product['price'] ? product['price'].toString().replace(',', '.') * 1 : 0
                 }
-                if (product['price'] && product['price'].toString().includes(',')) {
-                    price = price / 1000
-                }
+                // if (product['price'] && product['price'].toString().includes(',')) {
+                    // price = price / 1000
+                // }
                 if (product['um'] !== 'CONF.') {
-                    text = (Math.round((size * price / 1000)*20)/20).toFixed(2)
+                    text = (Math.round(((size / 1000) * price)*20)/20).toFixed(2)
                 } else {
                     text = (Math.round(price*20)/20).toFixed(2).toString()
                 }
@@ -220,12 +220,12 @@ async function canvasPaint(can, label, format, cfg, product) {
                 }
                 let price
                 if(product['show_promo'] === '1'){
-                    price = product['price'] ? product['price'].toString().replace(',', '.') * 1 : 0
+                    price = product['promo_price'] ? product['promo_price'].toString().replace(',', '.') * 1 : 0
                 } else {
-                    price = product['promo_price'] ? product['promo_price'].toString().replace(',', '') * 1000 : 0
+                    price = product['price'] ? product['price'].toString().replace(',', '.') * 1 : 0
                 }
                 if (product['um'] !== 'KG.') {
-                    text = (Math.round((price * 1000*20) / size)/20).toFixed(2);
+                    text = (Math.round((price*20) / (size / 1000))/20).toFixed(2);
                 } else {
                     text = (Math.round(price*20)/20).toFixed(2).toString()
                 }
@@ -244,11 +244,13 @@ async function canvasPaint(can, label, format, cfg, product) {
             } else if (id === 'fao' || id === 'method') {
                 var lineheight = 10;
                 var lines = text && text.split('\n');
-                for (var i = 0; i < lines.length; i++) {
-                    if (i === 0) {
-                        drawText(ctx, [a, b + i * lineheight, c - a, d - b], prefix + ' ' + lines[i], size * s, lineh, id, '', '');
-                    } else {
-                        drawText(ctx, [a, b + i * lineheight, c - a, d - b], lines[i], size * s, lineh, id, '', '');
+                if(lines){
+                    for (var i = 0; i < lines.length; i++) {
+                        if (i === 0) {
+                            drawText(ctx, [a, b + i * lineheight, c - a, d - b], prefix + ' ' + lines[i], size * s, lineh, id, '', '');
+                        } else {
+                            drawText(ctx, [a, b + i * lineheight, c - a, d - b], lines[i], size * s, lineh, id, '', '');
+                        }
                     }
                 }
             } else {
@@ -314,12 +316,12 @@ function splitText(measure, text, w) {
     const rows = [];
     let spins = 0;
     let words = []
-    if (text.length > 0) {
+    if (text && text.length > 0) {
         words = text && text.toString().split(' ');
     }
 
     let n = 0;
-    while (words.length > 0 && n < words.length) {
+    while (words && words.length > 0 && n < words.length) {
         const ws = words.slice(0, n + 1);
         const str = ws.join(' ');
 

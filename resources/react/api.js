@@ -16,9 +16,12 @@ const wordpress_api = async (payload) => {
     for (let i in payload) {
         body_data += `&${i}=${payload[i]}`
     }
-    const res = await fetch('https://picchionisurgelati.it/wp-admin/admin-ajax.php', {
+    
+    // const res = await fetch('https://picchionisurgelati.it/wp-admin/admin-ajax.php', {
+    const res = await fetch('https://staging10.picchionisurgelati.it/wp-admin/admin-ajax.php', {
     // const res = await fetch('http://localhost/20210203cristian/wp/wordpress/wp-admin/admin-ajax.php',{
         // const res = await fetch('http://localhost/wordpress/wp-admin/admin-ajax.php',{
+        // const res = await fetch('http://localhost/staging10_wordpress/wp-admin/admin-ajax.php',{
         method: payload ? 'POST' : 'GET',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'

@@ -94,9 +94,9 @@ class ApiController extends Controller
             $p->latin = $latin;
             $p->sizing = $sizing;
             if($p->show_promo){
-                $p->price = $price;
-            } else {
                 $p->promo_price = $price;
+            } else {
+                $p->price = $price;
             }
             $p->glazing = $glazing;            
             $p->save();
