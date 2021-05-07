@@ -92,7 +92,7 @@ const faos = {
     '9': 'Pescato nelle\n acque del fiume',
     '1': 'Verdure coltivate\n e raccolto',
     '2': 'Carne Allevata e \nMacella',
-    '3': 'Prodotto elaborato\n mello stabilimento',
+    '3': 'Prodotto elaborato\n nello stabilimento',
     '13': 'Vedi etichetta\n descrittiba',
     '3711': 'Baleari',
     '3712': 'Golfo del Leone',
@@ -117,13 +117,13 @@ const faos = {
     '2712': 'Fondali a Nord delle\n Azzorre',
     '2714': 'Fondali ad est della\n Groenlandia'
 }
-
+const nonshow_faos = ['1', '2', '3', '7', '8', '9', '13']
 const methods = {
     '100': 'Sciabiche',
     '101': 'Redi da Traino',
     '102': 'Reti da Imbrocco e\n Analoghe',
     '103': 'Reti da Circuizione \ne Raccolta',
-    '104': 'Ami e Palangai',
+    '104': 'Ami e Palangari',
     '105': 'Draghe',
     '106': 'Nasse e Trappole',
     '107': 'Pesca Estrattiva',
@@ -139,7 +139,11 @@ export default ({ label }) => {
     useEffect(() => {
         const onResize = () => {
             const [w, h] = [window.innerWidth, window.innerHeight];
-            setWh([w - 950, h - 110]);
+            if (w>768){
+                setWh([w - 900, h - 110]);
+            }else{
+                setWh([700, 1800]);
+            }
         };
         onResize();
         window.addEventListener('resize', onResize);
@@ -208,11 +212,18 @@ async function canvasPaint(can, label, format, cfg, product) {
                     text = (Math.round(price*20)/20).toFixed(2).toString()
                 }
             } else if (id === 'fao') {
-                if (text)
-                    text = faos[text]
+                if (text){
+                    if (text in nonshow_faos){
+                        text = faos[text]
+                    }else{
+                        text = text + ":" + faos[text]
+                    }
+                }
             } else if (id === 'method') {
-                if (text)
+                if (text){
                     text = methods[text]
+                }
+
             } else if (id === 'price') {
                 let size = product['sizing'] && product['sizing'].split('-')[0] && product['sizing'].split('-')[0].split('gr')[0] * 1
                 if (product['sizing'] && product['sizing'].split('-').length > 1) {

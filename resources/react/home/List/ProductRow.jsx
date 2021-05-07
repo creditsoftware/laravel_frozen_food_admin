@@ -33,7 +33,7 @@ export default ({ id, code, name, activelabel, updated_at }) => {
     const toggleRow = () => id |> list.toggle |> dispatch;
 
     return <>
-        <div className='product' onClick={toggleRow}>
+        {/* <div className='product' onClick={toggleRow}>
             <div><IconPop icon="edit" text="Codice" onClick={changeCod} />{code}</div>
             <div>{name}</div>
             <div>{active.description?.slice(0, 100)}</div>
@@ -44,8 +44,21 @@ export default ({ id, code, name, activelabel, updated_at }) => {
                 <IconPop icon="delete" text="Elimina" onClick={() => delProduct(id)} />
             </div>
 
-        </div>
-        {
+        </div> */}
+
+        <tr className='product' onClick={toggleRow}>
+            <td><IconPop icon="edit" text="Codice" onClick={changeCod} />{code}</td>
+            <td>{name}</td>
+            <td>{active.description?.slice(0, 100)}</td>
+            <td>{active.notes}</td>
+            <td>{updated_at}</td>
+            <td>
+                <IconPop icon={exploded ? "implode" : "explode"} onClick={toggleRow} />
+                <IconPop icon="delete" text="Elimina" onClick={() => delProduct(id)} />
+            </td>
+
+        </tr>
+        {/* {
             exploded && lbls.map(l => (
                 <div className='label' key={l.id}>
                     <div></div>
@@ -70,6 +83,33 @@ export default ({ id, code, name, activelabel, updated_at }) => {
                         }
                     </div>
                 </div>
+            ))
+        } */}
+        {
+            exploded && lbls.map(l => (
+                <tr className='label' key={l.id}>
+                    <td></td>
+                    <td>{l.name}</td>
+                    <td>{l.webdesc?.slice(0, 100)}</td>
+                    <td>{l.notes}</td>
+                    <td>{l.updated_at}</td>
+                    <td>
+                        <IconPop icon="edit" text="Modifica" onClick={() => { l.id |> nav.edit |> dispatch; code |> productDetail.getprod |> dispatch }} />
+                        <IconPop icon="dupe" text="Duplica" onClick={() => l.id |> labels.dupe |> dispatch} />
+                        {
+                            l.id === activelabel && <>
+                                <IconPop />
+                                <IconPop icon="enabled" />
+                            </>
+                        }
+                        {
+                            l.id !== activelabel && <>
+                                <IconPop icon="delete" text="Elimina" onClick={() => delLabel(l.id)} />
+                                <IconPop icon="disabled" text="Attiva" onClick={() => l.id |> products.active |> dispatch} />
+                            </>
+                        }
+                    </td>
+                </tr>
             ))
         }
     </>

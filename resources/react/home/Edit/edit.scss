@@ -1,8 +1,9 @@
 #main-edit {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     flex-direction: column;
     align-items: center;
+
 
     #toolbar {
 
@@ -17,53 +18,95 @@
         h1 {
             font-weight: 400;
         }
-
         .buttons {
-
+            
         }
     }
-
+    .sp {
+        text-align: center;
+        @media  (max-width:768px) { 
+            padding: 5px;
+            font-size: 30px;
+            font-weight: bolder;
+        }
+    }
+    
     #editor {
         border-top: 5px solid #DBDBDB;
         padding-top: 15px;
-
-
         box-sizing: border-box;
-
         width: 100%;
         height: calc(100vh - 80px);
-
+        
+        @media (max-width: 768px) {
+            flex-wrap:wrap;
+            div:nth-child(2){
+                margin: auto;
+                width: 100%;
+            }
+        }
+        
         #canvas {
             width: 100%;
             height: 100%;
         }
-
         #settings {
-
             flex-wrap: wrap;
             align-content: flex-start;
             overflow-y: scroll;
-
             width: 950px;
-            padding: 5px;
-            padding-left: 30px;
+            padding: 10px;
+            // padding-left: 30px;
             box-sizing: border-box;
 
             .label {
                 flex-direction: column;
                 margin-bottom: 10px;
                 width: 100%;
-
+                
                 h3 {
                     font-weight: 400;
                 }
+                @media (max-width:768px){
+                    &:nth-child(4), &:nth-child(5),&:nth-child(6), &:nth-child(7), &:nth-child(8), &:nth-child(9), &:nth-child(10){
+                        width: 50%!important;
+                    }
+                }
             }
 
+            .promotion .promotion-layout{
+                flex-wrap: wrap;
+                
+                div{
+                    // display: block;
+                    // padding-top: 10px;
+                    // padding-bottom: 10px;
+                    width: 20%;
+                    @media (max-width: 768px) {
+                        width:50%;
+                    }
+                    flex-direction: column;
+                    input[type=number]{
+                        margin:0px 5px;
+                    }
+                } 
+                & > div:nth-child(3){
+                    padding: 12px 0px;
+                    text-align: center;
+                    display: table;
+                    @media (max-width:768px){
+                        width:100%;
+                    }
+                }
+                
+                
+            } 
+            
             input[type=text], textarea {
                 border: 1px solid #EEEEEE;
                 margin: 0 5px;
             }
-
+            
             .filedrop {
                 width: 100%;
                 border: 1px solid #EEEEEE;
@@ -72,9 +115,7 @@
                 justify-content: center;
                 align-items: center;
                 flex-wrap: wrap;
-
-
-
+                
                 .pic {
                     width: 50%;
                     height: 50%;

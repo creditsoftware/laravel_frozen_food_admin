@@ -72,13 +72,15 @@ export default ({ id }) => {
     return <div id='main-edit'>
         <Toolbar>
             <div>
-                <h1>{label.name}</h1>
+                <h1 class = 'pc'>{label.name}</h1>
                 <div className='buttons'>
                     <IconBtn icon='back' text='indietro' onClick={exit} />
                     <IconBtn icon='save' text='salva' onClick={save} />
                 </div>
             </div>
         </Toolbar>
+        <h1 class = 'sp'>{label.name}</h1>
+
 
 
         <div id='editor'>

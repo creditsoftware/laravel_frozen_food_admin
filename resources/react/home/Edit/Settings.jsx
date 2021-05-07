@@ -152,32 +152,29 @@ const Settings = ({ label, update }) => {
   return (
     <div id='settings'>
       {format.map(f => <Input key={f.id} format={f} label={label} update={update} />)}
-      {
-        product &&
-        <Input format={{ id: 'price', title: "Price", uisize: 0.25 }} label={product} update={update} />
-      }
+      
       <div className="promotion" style={{ width: '100%' }}>
         <div className="promotion-layout" style={{ width: '100%', alignItems:'center'}}>
-          <div style={{ display: 'block', paddingTop: '10px', paddingBottom: '10px', width: '20%' }}>
+          <div>
             <p>Promotion Conf Value</p>
             <input type="number" placeholder="" value={priceValue.listinoConfValue} onChange={handleChange("listinoConfValue", "CONF.")} />
           </div>
-          <div style={{ display: 'block', paddingTop: '10px', paddingBottom: '10px', width: '20%' }}>
+          <div>
             <p>Promotion Kg Value</p>
             <input type="number" placeholder="" value={priceValue.listinoKgValue} onChange={handleChange("listinoKgValue", "KG.")} />
           </div>
-          <div style={{ display: 'block', paddingTop: '24px', paddingBottom: '10px', width: '20%' }}>
+          <div >
             <input type="checkbox" id="off" name="off" checked={showStatus} onChange={checkChangeAction} />
             <label for="off">Show</label>
             {/* <button style={{ height: '37px', width: '52px' }} onClick={switchButton}>
               <img width="20px" height="15px" src={_URL(`/img/arrow-left.png`)} />
             </button> */}
           </div>
-          <div style={{ display: 'block', paddingTop: '10px', paddingBottom: '10px', width: '20%' }}>
+          <div>
             <p>Listino Conf Value</p>
             <input type="number" placeholder="" value={priceValue.promoConfValue} onChange={handleChange("promoConfValue", "CONF.")} />
           </div>
-          <div style={{ display: 'block', paddingTop: '10px', paddingBottom: '10px', width: '20%' }}>
+          <div>
             <p>Listino Kg Value</p>
             <input type="number" placeholder="" value={priceValue.promoKgValue} onChange={handleChange("promoKgValue", "KG.")} />
           </div>

@@ -1,5 +1,14 @@
 
-
+@mixin media-gte-sm {
+    @media screen and (min-width: 768px) {
+      @content;
+    }
+  }
+  @mixin media-gte-lg {
+    @media screen and (min-width: 1200px) {
+      @content;
+    }
+  }
 #spabox {
     width: 100vw;
     height: 100vh;
@@ -45,6 +54,23 @@
         }
 
     }
+    @media screen and (max-width: 768px) {
+        #title {
+            width: 80%;
+            font-size: 14px;
+            letter-spacing: 1pt;
+            text-align: center;
+        }
+        #loginbox {
+            width: 80%!important;
+        }
+    }
+          
+    //   @media screen and (min-width: 768px) and (min-width: 1310px) {
+    //     .search-copyright-tab .copyright {
+    //       font-size: 21px;
+    //     }
+    //   }
 
     #error {
         color: red;

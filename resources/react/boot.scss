@@ -12,6 +12,17 @@ h1, h2, h3, h4, h5 {
     margin: 0;
 }
 
+@media (min-width: 769px) {
+    .sp{
+        display: none !important;
+    }
+}
+@media (max-width: 768px) {
+    .pc{
+        display: none !important;
+    }
+}
+
 input, textarea {
     color: $color-main;
     font-family: 'Open Sans', sans-serif;

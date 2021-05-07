@@ -14,13 +14,16 @@ import './list.scss';
 
 
 import ProductRow from "./ProductRow";
+import useWindowSize from "./useWindowSize";
 import { StayCurrentPortraitRounded } from "@material-ui/icons";
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/swiper.scss';
 import { useEventCallback } from "@material-ui/core";
 
+
 export default function List() {
+  const size = useWindowSize();
   const dispatch = useDispatch();
   const [productList, setProductList] = useState([])
   const [categoryList, setCategoryList] = useState([
@@ -79,17 +82,19 @@ export default function List() {
   return <div id='main-list'>
     <Toolbar>
       <div>
-        <input type='text' placeholder='Ricerca Prodotto' value={search} onChange={e => dispatch(list.search(e.target.value))} />
+        <input type='text' class = "pc-search" placeholder='Ricerca Prodotto' value={search} onChange={e => dispatch(list.search(e.target.value))} />
         <IconBtn text='logout' icon='logout' onClick={() => window.location.href = _URL('/logout')} />
       </div>
     </Toolbar>
     <div>
+    <input class = "sp-search" type='text' placeholder='Ricerca Prodotto' value={search} onChange={e => dispatch(list.search(e.target.value))} />
 
     </div>
     <div id="filterLayout">
       <Swiper
         spaceBetween={50}
-        slidesPerView={15}
+        slidesPerView={size.width > 1024 ? 15 : 4}
+        loop
       >
         {categoryList.map((item, index) => {
           return (
@@ -107,7 +112,7 @@ export default function List() {
         })}
       </Swiper>
     </div>
-    <div id='products'>
+    {/* <div id='products'>
       <div className='header'>
         <div>Codice</div>
         <div>Articolo</div>
@@ -115,17 +120,31 @@ export default function List() {
         <div>Note</div>
         <div>Modificato</div>
         <div>Azioni</div>
-      </div>
-      {productList && productList.length > 0 && productList.sort((a, b) => {
-        if (a.name < b.name) {
-          return -1;
-        }
-        if (a.name > b.name) {
-          return 1;
-        }
-        return 0;
-      }).map(p => <ProductRow key={p.id}{...p} />)}
-    </div>
+      </div> */}
+      <table id='products'>
+        <thead className='header'>
+          <tr>
+            <td>Codice</td>
+            <td>Articolo</td>
+            <td>Descrizione</td>
+            <td>Note</td>
+            <td>Modificato</td>
+            <td>Azioni</td>
+          </tr>
+        </thead>
+        <tbody>
+          {productList && productList.length > 0 && productList.sort((a, b) => {
+            if (a.name < b.name) {
+              return -1;
+            }
+            if (a.name > b.name) {
+              return 1;
+            }
+            return 0;
+          }).map(p => <ProductRow key={p.id}{...p} />)}
+
+        </tbody>
+    </table>
   </div>;
 
 
